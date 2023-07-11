@@ -1,4 +1,8 @@
-function Form() {
+type FormProps = {
+    onClick?: () => void
+}
+
+function Form({ onClick }: FormProps) {
     return(
         <form>
             <label>Nome do serviço
@@ -13,8 +17,8 @@ function Form() {
             <label>URL
                 <input type="text" />
             </label>
-            <button>Cadastrar</button>
-            <button>Cancelar</button>
+            <button type="submit">Cadastrar</button>
+            <button onClick={ onClick }>Cancelar</button>
         </form>
     )
 }
