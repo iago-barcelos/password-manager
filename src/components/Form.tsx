@@ -9,22 +9,21 @@ function Form({ onClick }: FormProps) {
   const [inputLogin, setInputLogin] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputURL, setInputURL] = useState('');
+  const [isPasswordLengthValid, setPasswordLengthValid] = useState(false);
+  const [isPasswordLettersNumbersValid, setPasswordLettersNumbersValid] = useState(false);
+  const [isPasswordSpecialValid, setPasswordSpecialValid] = useState(false);
 
-  // function handleServiceName(event: React.ChangeEvent<HTMLInputElement>) {
-  // setInputService(event.target.value);
-  // }
+  const invalidCheck = 'invalid-password-check';
+  const validCheck = 'valid-password-check';
 
-  // function handleLogin(event: React.ChangeEvent<HTMLInputElement>) {
-  // setInputLogin(event.target.value);
-  // }
-
-  // function handlePassword(event: React.ChangeEvent<HTMLInputElement>) {
-  // setInputPassword(event.target.value);
-  // }
-
-  // function handleURL(event: React.ChangeEvent<HTMLInputElement>) {
-  // setInputURL(event.target.value);
-  // }
+  function validatePassword(password: string) {
+    const isValidLength = password.length >= 8 && password.length <= 16;
+    const hasLettersAndNumbers = /^(?=.*?[A-Za-z])(?=.*?[0-9])/i.test(password);
+    const hasSpecialCharacter = /^(?=.*?[!@#$%^&*()])/i.test(password);
+    setPasswordLengthValid(isValidLength);
+    setPasswordLettersNumbersValid(hasLettersAndNumbers);
+    setPasswordSpecialValid(hasSpecialCharacter);
+  }
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,7 +45,7 @@ function Form({ onClick }: FormProps) {
     return isValidLength && isValidFormat;
   }
 
-  function generalFormValidation() {
+  function generalFormValidation() { // valida os inputs em conjunto
     const serviceValidation = inputServiceValidation();
     const loginValidation = inputLoginValidation();
     const passwordValidation = inputPasswordValidation();
@@ -84,7 +83,10 @@ function Form({ onClick }: FormProps) {
             value={ inputPassword }
             type="password"
             required
-            onChange={ (event) => setInputPassword(event.target.value) }
+            onChange={ (event) => {
+              setInputPassword(event.target.value);
+              validatePassword(event.target.value);
+            } }
           />
         </label>
 
@@ -101,6 +103,21 @@ function Form({ onClick }: FormProps) {
 
         <button onClick={ onClick }>Cancelar</button>
       </form>
+      <h3>
+        A senha deve obecer os seguintes critérios:
+        <p className={ isPasswordLengthValid ? validCheck : invalidCheck }>
+          Possuir 8 ou mais caracteres
+        </p>
+        <p className={ isPasswordLengthValid ? validCheck : invalidCheck }>
+          Possuir até 16 caracteres
+        </p>
+        <p className={ isPasswordLettersNumbersValid ? validCheck : invalidCheck }>
+          Possuir letras e números
+        </p>
+        <p className={ isPasswordSpecialValid ? validCheck : invalidCheck }>
+          Possuir algum caractere especial
+        </p>
+      </h3>
     </div>
   );
 }
