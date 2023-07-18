@@ -37,15 +37,19 @@ function App() {
               </a>
               <p>
                 Login:
-                {userCard.login}
+                <span>{userCard.login}</span>
               </p>
               <p>
                 Senha:
-                {userCard.password}
+                <span>{userCard.password}</span>
               </p>
               <button
                 data-testid="remove-btn"
-                { ...userCardList.filter((UserCard) => UserCard.service) }
+                onClick={ () => {
+                  const newCardList = userCardList
+                    .filter((item) => item.service !== userCard.service);
+                  setUserCardList(newCardList);
+                } }
               >
                 Apagar
               </button>
