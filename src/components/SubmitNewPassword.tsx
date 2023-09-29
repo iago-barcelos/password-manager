@@ -4,7 +4,10 @@ type SubmitButtonProps = {
 
 function SubmitNewPassword({ onClick }: SubmitButtonProps) {
   return (
-    <button onClick={ onClick }>
+    <button
+      onClick={ onClick }
+      className="new-password-button"
+    >
       Cadastrar nova senha
     </button>
   );

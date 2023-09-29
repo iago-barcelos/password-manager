@@ -3,6 +3,8 @@ import './App.css';
 import Form from './components/Form';
 import SubmitNewPassword from './components/SubmitNewPassword';
 import { UserCardList } from './types';
+import Vector from './components/Vector';
+import Unlocker from './images/icon _unlock_.svg';
 
 function App() {
   const showForm = false;
@@ -25,58 +27,65 @@ function App() {
 
   function renderUserCards() {
     if (userCardList.length === 0) {
-      return <p>Nenhuma senha cadastrada</p>;
+      return (
+        <div className="no-password-submitted">
+          <p>Nenhuma senha cadastrada</p>
+          <img src={ Unlocker } alt="unlock" />
+        </div>
+      );
     }
     return (
       <div>
-        <ul>
-          {userCardList.map((userCard, index) => (
-            <li key={ index }>
-              <a href={ userCard.url }>
-                {userCard.service}
-              </a>
-              <p>
-                Login:
-                <span>{userCard.login}</span>
-              </p>
-              <p>
-                Senha:
-                <span>{userCard.password}</span>
-              </p>
-              <button
-                data-testid="remove-btn"
-                onClick={ () => {
-                  const newCardList = userCardList
-                    .filter((item) => item.service !== userCard.service);
-                  setUserCardList(newCardList);
-                } }
-              >
-                Apagar
-              </button>
-            </li>
-          ))}
-        </ul>
+        {userCardList.map((userCard, index) => (
+          <div key={ index } className="user-card">
+            <a href={ userCard.url }>
+              {userCard.service}
+            </a>
+            <p>
+              Login:
+              <span>{userCard.login}</span>
+            </p>
+            <p>
+              Senha:
+              <span>{userCard.password}</span>
+            </p>
+            <button
+              className="remove-button"
+              data-testid="remove-btn"
+              onClick={ () => {
+                const newCardList = userCardList
+                  .filter((item) => item.service !== userCard.service);
+                setUserCardList(newCardList);
+              } }
+            >
+              Apagar
+            </button>
+          </div>
+        ))}
       </div>
     );
   }
 
   return (
-    <>
-      <header>
+    <div className="container">
+      <header className="header">
         <h1>Gerenciador de Senhas</h1>
       </header>
       {buttonState ? <SubmitNewPassword onClick={ () => handleNewPassword() } /> : null}
+      <Vector />
       {formState ? (
-        <Form
-          userCardList={ userCardList }
-          setUserCardList={ setUserCardList }
-          onClick={ () => handleCancel() }
-        />
+        <div className="form-group">
+          <Form
+            userCardList={ userCardList }
+            setUserCardList={ setUserCardList }
+            onClick={ () => handleCancel() }
+          />
+        </div>
       ) : null}
       <div>
-        { renderUserCards() }
+        {renderUserCards()}
       </div>
-    </>
+    </div>
   );
 }
 

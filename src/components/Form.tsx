@@ -16,6 +16,17 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
   const [isPasswordLettersNumbersValid, setPasswordLettersNumbersValid] = useState(false);
   const [isPasswordSpecialValid, setPasswordSpecialValid] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  function togglePasswordVisibility() {
+    setShowPassword(!showPassword);
+  }
+
+  function handleTogglePasswordKey(event : React.KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      togglePasswordVisibility();
+    }
+  }
 
   const invalidCheck = 'invalid-password-check';
   const validCheck = 'valid-password-check';
@@ -78,7 +89,7 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
   }
 
   return (
-    <div>
+    <div className="form-container">
       {!formSubmitted ? (
         <div>
           <form onSubmit={ handleFormSubmit }>
@@ -106,13 +117,22 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
               Senha
               <input
                 value={ inputPassword }
-                type="password"
+                type={ showPassword ? 'text' : 'password' }
                 required
                 onChange={ (event) => {
                   setInputPassword(event.target.value);
                   validatePassword(event.target.value);
                 } }
               />
+              <span
+                className="password-toggle"
+                onClick={ togglePasswordVisibility }
+                onKeyDown={ handleTogglePasswordKey }
+                role="button"
+                tabIndex={ 0 }
+              >
+                { showPassword ? 'Ocultar' : 'Mostrar' }
+              </span>
             </label>
 
             <label>
