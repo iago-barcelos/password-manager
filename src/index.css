@@ -8,12 +8,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  max-width: 1440px;
-  max-height: 1024px;
-  margin: 0 auto;
-  padding: 20px;
+  align-items: center;  
 }
 
 .header {
@@ -29,6 +24,7 @@ body {
 
 .form-group {
   margin-bottom: 10px;
+  margin-left: 20%;
 }
 
 .password-input {
@@ -36,19 +32,6 @@ body {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-}
-
-.password-toggle {
-  background-color: #eee;
-  padding: 5px 10px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-left: -35px;
-}
-
-.password-toggle:hover {
-  background-color: #ddd;
 }
 
 .user-card {
@@ -107,4 +90,99 @@ body {
   font-weight: 400;
   line-height: normal;
   margin-top: 160px;
+}
+
+.form-div {
+  color:#8D8D8D;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  background: #1E2029;
+  width: 80%;
+  height: 50%;
+}
+
+.form-container {
+  margin-top: 35px;
+  margin-left: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input {
+  border-radius: 10px;
+  background: #3B3F50;
+}
+
+.input-service {
+  width: 45vw;
+  height: 5vh;
+  margin-bottom: 20px;
+}
+
+.input-login {
+  width: 236px;
+  height: 5vh;
+  margin-bottom: 50px;
+  margin-right: 40px;
+}
+
+.input-password {
+  width: 236px;
+  height: 5vh;
+}
+
+.input-URL {
+  width: 45vw;
+  height: 5vh;
+}
+
+
+.label-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-password {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-toggle {
+  background-color: #eee;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-toggle:hover {
+  background-color: #ddd;
+}
+
+.sign-and-cancel {
+  width: 90%;
+  background-color: #ff0000;
+  margin-left: 15px;
+  height: 5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 35px;
+}
+
+.sign-button {
+  border-radius: 100px;
+  background: #3590F5;
+}
+
+.cancel-button {
+  color: #3590F5;
+  align-self: center;
+
+
+}
+
+.password-criteria{
+  margin: auto;
 }

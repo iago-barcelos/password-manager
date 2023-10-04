@@ -72,7 +72,6 @@ function App() {
         <h1>Gerenciador de Senhas</h1>
       </header>
       {buttonState ? <SubmitNewPassword onClick={ () => handleNewPassword() } /> : null}
-      <Vector />
       {formState ? (
         <div className="form-group">
           <Form
@@ -82,6 +81,7 @@ function App() {
           />
         </div>
       ) : null}
+      <Vector />
       <div>
         {renderUserCards()}
       </div>

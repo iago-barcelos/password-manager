@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { UserCardList } from '../types';
+import eyeClosed from '../images/eye-closed.svg';
+import eyeOpen from '../images/eye-open.svg';
 
 type FormProps = {
   onClick: () => void
@@ -89,13 +91,17 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
   }
 
   return (
-    <div className="form-container">
+    <div className="form-div">
       {!formSubmitted ? (
         <div>
-          <form onSubmit={ handleFormSubmit }>
-            <label>
+          <form
+            onSubmit={ handleFormSubmit }
+            className="form-container"
+          >
+            <label className="label-item">
               Nome do serviço
               <input
+                className="input-service"
                 value={ inputService }
                 type="text"
                 required
@@ -103,9 +109,10 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
               />
             </label>
 
-            <label>
+            <label className="label-item">
               Login
               <input
+                className="input-login"
                 value={ inputLogin }
                 type="text"
                 required
@@ -113,9 +120,10 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
               />
             </label>
 
-            <label>
+            <label className="label-password">
               Senha
               <input
+                className="input-password"
                 value={ inputPassword }
                 type={ showPassword ? 'text' : 'password' }
                 required
@@ -124,40 +132,47 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
                   validatePassword(event.target.value);
                 } }
               />
-              <span
+              <img
+                src={ showPassword ? eyeClosed : eyeOpen }
+                alt="password-eye"
                 className="password-toggle"
                 onClick={ togglePasswordVisibility }
                 onKeyDown={ handleTogglePasswordKey }
-                role="button"
                 tabIndex={ 0 }
-              >
-                { showPassword ? 'Ocultar' : 'Mostrar' }
-              </span>
+              />
             </label>
 
-            <label>
+            <label className="label-item">
               URL
               <input
+                className="input-URL"
                 value={ inputURL }
                 type="text"
                 onChange={ (event) => setInputURL(event.target.value) }
               />
             </label>
 
+          </form>
+          <div className="sign-and-cancel">
+            <a
+              className="cancel-button"
+              onClick={ onClick }
+            >
+              Cancelar
+            </a>
             <button
+              className="sign-button"
               disabled={ !generalFormValidation() }
               type="submit"
             >
               Cadastrar
             </button>
-
-            <button onClick={ onClick }>Cancelar</button>
-          </form>
+          </div>
         </div>
       ) : (
         <button onClick={ resetForm }>Cadastrar nova senha</button>
       )}
-      <h3>
+      <div className="password-criteria">
         A senha deve obecer os seguintes critérios:
         <p className={ isPasswordLengthValid ? validCheck : invalidCheck }>
           Possuir 8 ou mais caracteres
@@ -171,7 +186,7 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
         <p className={ isPasswordSpecialValid ? validCheck : invalidCheck }>
           Possuir algum caractere especial
         </p>
-      </h3>
+      </div>
     </div>
   );
 }
