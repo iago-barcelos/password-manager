@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { UserCardList } from '../types';
 import eyeClosed from '../images/eye-closed.svg';
 import eyeOpen from '../images/eye-open.svg';
+import SubmitNewPassword from './SubmitNewPassword';
 
 type FormProps = {
   onClick: () => void
@@ -90,10 +91,30 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
     setFormSubmitted(false);
   }
 
+  function renderPasswordCriteria() {
+    return (
+      <div className="password-criteria">
+        A senha deve obecer os seguintes critérios:
+        <p className={ isPasswordLengthValid ? validCheck : invalidCheck }>
+          Possuir 8 ou mais caracteres
+        </p>
+        <p className={ isPasswordLengthValid ? validCheck : invalidCheck }>
+          Possuir até 16 caracteres
+        </p>
+        <p className={ isPasswordLettersNumbersValid ? validCheck : invalidCheck }>
+          Possuir letras e números
+        </p>
+        <p className={ isPasswordSpecialValid ? validCheck : invalidCheck }>
+          Possuir algum caractere especial
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="form-div">
       {!formSubmitted ? (
-        <div>
+        <div className="form-and-criteria">
           <form
             onSubmit={ handleFormSubmit }
             className="form-container"
@@ -132,15 +153,18 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
                   validatePassword(event.target.value);
                 } }
               />
-              <img
-                src={ showPassword ? eyeClosed : eyeOpen }
-                alt="password-eye"
-                className="password-toggle"
-                onClick={ togglePasswordVisibility }
-                onKeyDown={ handleTogglePasswordKey }
-                tabIndex={ 0 }
-              />
             </label>
+            <button
+              className="password-toggle"
+              onClick={ togglePasswordVisibility }
+              onKeyDown={ handleTogglePasswordKey }
+            >
+              <img
+                className="eye"
+                src={ showPassword ? eyeClosed : eyeOpen }
+                alt=""
+              />
+            </button>
 
             <label className="label-item">
               URL
@@ -152,41 +176,27 @@ function Form({ onClick, setUserCardList, userCardList }: FormProps) {
               />
             </label>
 
+            <div className="sign-and-cancel">
+              <button
+                className="cancel-button"
+                onClick={ onClick }
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                className="sign-button"
+                disabled={ !generalFormValidation() }
+              >
+                Cadastrar
+              </button>
+            </div>
           </form>
-          <div className="sign-and-cancel">
-            <a
-              className="cancel-button"
-              onClick={ onClick }
-            >
-              Cancelar
-            </a>
-            <button
-              className="sign-button"
-              disabled={ !generalFormValidation() }
-              type="submit"
-            >
-              Cadastrar
-            </button>
-          </div>
+          { renderPasswordCriteria() }
         </div>
       ) : (
-        <button onClick={ resetForm }>Cadastrar nova senha</button>
+        <SubmitNewPassword onClick={ () => resetForm() } />
       )}
-      <div className="password-criteria">
-        A senha deve obecer os seguintes critérios:
-        <p className={ isPasswordLengthValid ? validCheck : invalidCheck }>
-          Possuir 8 ou mais caracteres
-        </p>
-        <p className={ isPasswordLengthValid ? validCheck : invalidCheck }>
-          Possuir até 16 caracteres
-        </p>
-        <p className={ isPasswordLettersNumbersValid ? validCheck : invalidCheck }>
-          Possuir letras e números
-        </p>
-        <p className={ isPasswordSpecialValid ? validCheck : invalidCheck }>
-          Possuir algum caractere especial
-        </p>
-      </div>
     </div>
   );
 }

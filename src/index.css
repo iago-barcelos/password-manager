@@ -1,3 +1,4 @@
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -8,7 +9,15 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
+  justify-items: center;  
+}
+
+.form-container {
+  margin-top: 35px;
+  margin-left: 6%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .header {
@@ -23,8 +32,8 @@ body {
 }
 
 .form-group {
-  margin-bottom: 10px;
-  margin-left: 20%;
+  margin: auto;
+  width: 80%;
 }
 
 .password-input {
@@ -95,19 +104,14 @@ body {
 .form-div {
   color:#8D8D8D;
   margin-top: 50px;
-  display: flex;
-  flex-direction: row;
   border-radius: 10px;
   background: #1E2029;
-  width: 80%;
+  width: 100%;
   height: 50%;
 }
 
-.form-container {
-  margin-top: 35px;
-  margin-left: 15px;
+.form-and-criteria {
   display: flex;
-  flex-wrap: wrap;
 }
 
 input {
@@ -116,28 +120,34 @@ input {
 }
 
 .input-service {
-  width: 45vw;
+  width: 515px;
   height: 5vh;
   margin-bottom: 20px;
 }
 
 .input-login {
-  width: 236px;
+  width: 230px;
   height: 5vh;
-  margin-bottom: 50px;
-  margin-right: 40px;
+  margin-bottom: 20px;
+  margin-right: 45px;
 }
 
 .input-password {
-  width: 236px;
+  width: 230px;
   height: 5vh;
 }
 
 .input-URL {
-  width: 45vw;
+  width: 515px;
   height: 5vh;
+  margin-bottom: 40px;
 }
 
+input {
+  font-family: Roboto;
+  font-size: 20px;
+  color: #FFF;
+}
 
 .label-item {
   display: flex;
@@ -150,39 +160,75 @@ input {
 }
 
 .password-toggle {
-  background-color: #eee;
   cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  margin: 0;
+  padding: 0;
+  width: 7%;
+  height: 9%;
+  margin-left: 8px;
+  margin-top: 5%;
+  background-color: transparent;
+  border-color: transparent;
 }
 
-.password-toggle:hover {
-  background-color: #ddd;
+.eye {
+  width: 100%;
+  height: 100%;
 }
 
 .sign-and-cancel {
   width: 90%;
-  background-color: #ff0000;
-  margin-left: 15px;
   height: 5vw;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin-top: 35px;
+  justify-content:space-around;
+  padding-left: 7%;
+  padding-bottom: 5%;
 }
 
 .sign-button {
+  width: 40%;
   border-radius: 100px;
+  border-color: transparent;
   background: #3590F5;
+  cursor: pointer;
+  color: #FFF;
+  font-family: Roboto;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.sign-button:hover {
+  background-color: #163C66;
 }
 
 .cancel-button {
   color: #3590F5;
   align-self: center;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  font-family: Roboto;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 
-
+.cancel-button:hover {
+  color:#FFF
 }
 
 .password-criteria{
-  margin: auto;
+  margin: 5% 5% 5% 5%;
+  border-radius: 10px;
+  background: #252730;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 2%;
+  padding-left: 2%;
+  width: 75% ;
 }
